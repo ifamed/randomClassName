@@ -7,14 +7,14 @@ A lightweight plugin that changes the class on the block without repeating.
 Include the plugin.
 
 ```html
-<script src="path/to/randomClassName.js"></script>
+<script src="path/to/randomClassName.min.js"></script>
 ```
 
 ...or include jQuery and the plugin
 
 ```html
 <script src="path/to/jquery.js"></script>
-<script src="path/to/randomClassName.js"></script>
+<script src="path/to/randomClassName.min.js"></script>
 ```
 
 Finally, initialize the plugin.
