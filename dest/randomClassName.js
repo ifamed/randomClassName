@@ -299,7 +299,7 @@ var RandomClassName = function () {
 			}
 			this.setClassName(className);
 
-			return this.prefix ? this.prefix + className : className;
+			return this.getFullClassName(className);
 		}
 	}, {
 		key: 'getRandomClassName',
@@ -309,7 +309,7 @@ var RandomClassName = function () {
 	}, {
 		key: 'isCurrentClassName',
 		value: function isCurrentClassName(className) {
-			return this.prefix ? this.wrapper.classList.contains(this.prefix + className) : this.wrapper.classList.contains(className);
+			return this.wrapper.classList.contains(this.getFullClassName(className));
 		}
 	}, {
 		key: 'removeClassNames',
@@ -317,14 +317,19 @@ var RandomClassName = function () {
 			var _this = this;
 
 			return this.classNames.forEach(function (className) {
-				return _this.prefix ? _this.wrapper.classList.remove(_this.prefix + className) : _this.wrapper.classList.remove(className);
+				return _this.wrapper.classList.remove(_this.getFullClassName(className));
 			});
+		}
+	}, {
+		key: 'getFullClassName',
+		value: function getFullClassName(className) {
+			return this.prefix ? this.prefix + className : className;
 		}
 	}, {
 		key: 'setClassName',
 		value: function setClassName(className) {
 			this.removeClassNames();
-			return this.prefix ? this.wrapper.classList.add(this.prefix + className) : this.wrapper.classList.add(className);
+			return this.wrapper.classList.add(this.getFullClassName(className));
 		}
 	}]);
 	return RandomClassName;
@@ -334,13 +339,13 @@ exports.default = RandomClassName;
 
 
 HTMLElement.prototype.randomClassName = function (options) {
-	options.wrapper = this;
+	options.wrapper = undefined;
 	return new RandomClassName(options).init();
 };
 
 if (typeof jQuery !== 'undefined') {
 	jQuery.fn.randomClassName = function (options) {
-		options.wrapper = jQuery(this).get(0);
+		options.wrapper = jQuery(undefined).get(0);
 		return new RandomClassName(options).init();
 	};
 }
