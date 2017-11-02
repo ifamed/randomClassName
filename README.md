@@ -21,7 +21,7 @@ Finally, initialize the plugin.
 
 ```javascript
 document.querySelector('body').randomClassName({
-    themes: ['purple', 'blue', 'pink', 'lightblue'],
+    classNames: ['purple', 'blue', 'pink', 'lightblue'],
     prefix: 'theme--'
 });
 ```
@@ -30,7 +30,7 @@ document.querySelector('body').randomClassName({
 
 ```javascript
 $('body').randomClassName({
-    themes: ['purple', 'blue', 'pink', 'lightblue'],
+    classNames: ['purple', 'blue', 'pink', 'lightblue'],
     prefix: 'theme--'
 });
 ```
