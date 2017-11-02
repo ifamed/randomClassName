@@ -6,17 +6,21 @@
 
 export default class RandomClassName {
 	constructor(options) {
-		this.wrapper = options.wrapper || document.querySelector('body');
-		this.classNames = options.classNames || [];
-		this.prefix = options.prefix || '';
-		this.repeat = options.repeat || false;
+		if (typeof options.classNames === 'object' && options.classNames.length) {
+			this.wrapper = options.wrapper || document.querySelector('body');
+			this.classNames = options.classNames || [];
+			this.prefix = options.prefix || '';
+			this.repeat = options.repeat || false;
 
-		this.init = this.init.bind(this);
-		this.getRandomClassName = this.getRandomClassName.bind(this);
-		this.isCurrentClassName = this.isCurrentClassName.bind(this);
-		this.removeClassNames = this.removeClassNames.bind(this);
-		this.getFullClassName = this.getFullClassName.bind(this);
-		this.setClassName = this.setClassName.bind(this);
+			this.init = this.init.bind(this);
+			this.getRandomClassName = this.getRandomClassName.bind(this);
+			this.isCurrentClassName = this.isCurrentClassName.bind(this);
+			this.removeClassNames = this.removeClassNames.bind(this);
+			this.getFullClassName = this.getFullClassName.bind(this);
+			this.setClassName = this.setClassName.bind(this);
+		} else {
+			console.error('Classnames is empty.');
+		}
 	}
 
 	init() {
@@ -58,26 +62,30 @@ export default class RandomClassName {
 
 HTMLElement.prototype.randomClassName = function(options) {
 	try {
-		if (this instanceof HTMLElement) {
+		if (typeof this !== 'undefined' && this instanceof HTMLElement) {
 			options.wrapper = this;
 			return new RandomClassName(options).init();
+		} else {
+			console.error('Wrapper is not HTMLElement.');
 		}
 	}
 	catch (e) {
-		console.log('Initialization error.');
+		console.error('Initialization error.');
 	}
 };
 
 if (typeof jQuery !== 'undefined') {
 	jQuery.fn.randomClassName = function(options) {
 		try {
-			if (this instanceof HTMLElement) {
-				options.wrapper = jQuery(this).get(0);
+			if (typeof this !== 'undefined' && this[0] instanceof HTMLElement) {
+				options.wrapper = this[0];
 				return new RandomClassName(options).init();
+			} else {
+				console.error('Wrapper is not HTMLElement.');
 			}
 		}
 		catch (e) {
-			console.log('Initialization error.');
+			console.error('Initialization error.');
 		}
 	};
 }
