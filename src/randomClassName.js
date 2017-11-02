@@ -10,6 +10,7 @@ export default class RandomClassName {
 			this.wrapper = options.wrapper || document.querySelector('body');
 			this.classNames = options.classNames || [];
 			this.prefix = options.prefix || '';
+			this.suffix = options.suffix || '';
 			this.repeat = options.repeat || false;
 
 			this.init = this.init.bind(this);
@@ -51,7 +52,7 @@ export default class RandomClassName {
 	}
 
 	getFullClassName(className) {
-		return (this.prefix) ? this.prefix + className : className;
+		return ((this.prefix) ? this.prefix : '') + className + ((this.suffix) ? this.suffix : '');
 	}
 
 	setClassName(className) {

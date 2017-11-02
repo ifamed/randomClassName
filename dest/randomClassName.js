@@ -1157,6 +1157,7 @@ var RandomClassName = function () {
 			this.wrapper = options.wrapper || document.querySelector('body');
 			this.classNames = options.classNames || [];
 			this.prefix = options.prefix || '';
+			this.suffix = options.suffix || '';
 			this.repeat = options.repeat || false;
 
 			this.init = this.init.bind(this);
@@ -1208,7 +1209,7 @@ var RandomClassName = function () {
 	}, {
 		key: 'getFullClassName',
 		value: function getFullClassName(className) {
-			return this.prefix ? this.prefix + className : className;
+			return (this.prefix ? this.prefix : '') + className + (this.suffix ? this.suffix : '');
 		}
 	}, {
 		key: 'setClassName',

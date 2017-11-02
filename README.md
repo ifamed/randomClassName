@@ -41,4 +41,6 @@ $('body').randomClassName({
 
 - `prefix`: (default `''`) The prefix that will be added before the class.
 
+- `suffix`: (default `''`) The suffix that will be added after the class.
+
 - `repeat`: (default `false`) Whether to repeat the previous class.
