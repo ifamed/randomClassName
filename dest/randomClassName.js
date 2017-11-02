@@ -265,8 +265,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /*
 	randomClassName - v1.0
-  https://github.com/ifamed/randomClassName
-  Made by Dmitry Pavlov
+	https://github.com/ifamed/randomClassName
+	Made by Dmitry Pavlov
 */
 
 var RandomClassName = function () {
@@ -282,6 +282,7 @@ var RandomClassName = function () {
 		this.getRandomClassName = this.getRandomClassName.bind(this);
 		this.isCurrentClassName = this.isCurrentClassName.bind(this);
 		this.removeClassNames = this.removeClassNames.bind(this);
+		this.getFullClassName = this.getFullClassName.bind(this);
 		this.setClassName = this.setClassName.bind(this);
 	}
 
@@ -339,14 +340,26 @@ exports.default = RandomClassName;
 
 
 HTMLElement.prototype.randomClassName = function (options) {
-	options.wrapper = undefined;
-	return new RandomClassName(options).init();
+	try {
+		if (this instanceof HTMLElement) {
+			options.wrapper = this;
+			return new RandomClassName(options).init();
+		}
+	} catch (e) {
+		console.log('Initialization error.');
+	}
 };
 
 if (typeof jQuery !== 'undefined') {
 	jQuery.fn.randomClassName = function (options) {
-		options.wrapper = jQuery(undefined).get(0);
-		return new RandomClassName(options).init();
+		try {
+			if (this instanceof HTMLElement) {
+				options.wrapper = jQuery(this).get(0);
+				return new RandomClassName(options).init();
+			}
+		} catch (e) {
+			console.log('Initialization error.');
+		}
 	};
 }
 

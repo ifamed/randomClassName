@@ -56,14 +56,28 @@ export default class RandomClassName {
 	}
 }
 
-HTMLElement.prototype.randomClassName = (options) => {
-	options.wrapper = this;
-	return new RandomClassName(options).init();
+HTMLElement.prototype.randomClassName = function(options) {
+	try {
+		if (this instanceof HTMLElement) {
+			options.wrapper = this;
+			return new RandomClassName(options).init();
+		}
+	}
+	catch (e) {
+		console.log('Initialization error.');
+	}
 };
 
 if (typeof jQuery !== 'undefined') {
-	jQuery.fn.randomClassName = (options) => {
-		options.wrapper = jQuery(this).get(0);
-		return new RandomClassName(options).init();
+	jQuery.fn.randomClassName = function(options) {
+		try {
+			if (this instanceof HTMLElement) {
+				options.wrapper = jQuery(this).get(0);
+				return new RandomClassName(options).init();
+			}
+		}
+		catch (e) {
+			console.log('Initialization error.');
+		}
 	};
 }
