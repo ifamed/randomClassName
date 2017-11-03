@@ -37,10 +37,10 @@ $('body').randomClassName({
 
 ## Options
 
-- `classNames`: (default `[]`) Array of classes to be selected in random order.
+- `classNames`: (type: `Array`, default `[]`) Array of classes to be selected in random order.
 
-- `prefix`: (default `''`) The prefix that will be added before the class.
+- `prefix`: (type: `String`, default `''`) The prefix that will be added before the class.
 
-- `suffix`: (default `''`) The suffix that will be added after the class.
+- `suffix`: (type: `String`, default `''`) The suffix that will be added after the class.
 
-- `repeat`: (default `false`) Whether to repeat the previous class.
+- `repeat`: (type: `Boolean`, default `false`) Whether to repeat the previous class.

@@ -1,5 +1,5 @@
 /*
-	randomClassName - v1.0
+	randomClassName - v0.1.0
 	https://github.com/ifamed/randomClassName
 	Made by Dmitry Pavlov
 */
