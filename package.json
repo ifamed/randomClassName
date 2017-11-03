@@ -23,6 +23,7 @@
 		"gulp-size": "^2.1.0",
 		"gulp-uglify": "^3.0.0",
 		"run-sequence": "^2.2.0",
-		"vinyl-source-stream": "^1.git1.0"
+		"vinyl-buffer": "^1.0.0",
+		"vinyl-source-stream": "^1.1.0"
 	}
 }
